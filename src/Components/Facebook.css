@@ -1,0 +1,38 @@
+.facebook_title_controls{
+   padding: 10px;
+    background-color: #101453;
+}
+
+.help_center_bg{
+   line-height: 20px;
+    
+  
+}
+
+.facebook_title h1{
+   color: white;
+    margin-left: 10%;
+    font-size: 26px;
+}
+.copyright_border_heading{
+    background-color: #c2cacd8b;
+    padding: 10px 20px;
+    letter-spacing: -1px;
+    border: 1px solid  #c2cacd50;
+}
+.help_bg{
+    background-color: #c2cacd8b;
+    padding: 15px 10px;
+    border: 1px solid  #c2cacd50;
+    
+}
+.color_helpdata_content:hover{
+   
+    color: #464646;
+}
+
+@media screen and (max-width:769px){
+    .help_center_bg{
+        display: none !important;
+    }
+}

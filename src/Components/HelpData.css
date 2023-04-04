@@ -1,0 +1,10 @@
+.color_helpdata_content{
+    color: #464646;
+    text-decoration: none;
+    display: flex;
+    padding: 5px 0;
+}
+.HelpData_controls{
+   padding: 15px 10px;
+}
+
