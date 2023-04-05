@@ -33,7 +33,7 @@ const Facebook = () => {
                                 <div className='copyright_video_content'>
                                     <span>Detailed Video Information</span>
                                     <div className='video_vid mb-3 mt-2'>
-                                        <video src='./video/vid1.mp4' autoPlay loop muted className='video_here' style={{ width: "200px" }} />
+                                        <video src='./video/vid1.mp4' autoPlay loop   className='video_here' style={{ width: "300px" }}  controls/>
                                     </div>
                                     <p>Please be sure to provide the requested information thanks
                                         <br></br>
